@@ -1,9 +1,21 @@
 import { Helmet } from "react-helmet-async";
 import Cover from "../Component/Cover";
 import menuImg from '../assets/menu/banner3.jpg'
-import PopularMenu from "../Component/PopularMenu";
+import dessert from '../assets/menu/dessert-bg.jpeg'
+import soups from '../assets/menu/soup-bg.jpg'
+import salads from '../assets/menu/salad-bg.jpg'
+import pizzas from '../assets/menu/pizza-bg.jpg'
+import useMenu from "../hooks/useMenu";
+import SectionTitle from "../Component/SectionTitle";
+import MenuCategory from "../Component/MenuCategory";
 
 const Menu = () => {
+  const [menu] = useMenu()
+  const desserts = menu.filter(item=> item.category === 'dessert')
+  const soup = menu.filter(item=> item.category === 'soup')
+  const salad = menu.filter(item=> item.category =='salad')
+  const pizza = menu.filter(item=> item.category === 'pizza')
+  const offered = menu.filter(item=> item.category === 'offered')
     return (
         <div>
              <Helmet>
@@ -11,13 +23,15 @@ const Menu = () => {
         
       </Helmet>
       <Cover img={menuImg} title='our menu'></Cover>
-      <PopularMenu/>
-      <Cover img={menuImg} title='our menu'></Cover>
-      <PopularMenu/>
-      <Cover img={menuImg} title='our menu'></Cover>
-      <PopularMenu/>
-      <Cover img={menuImg} title='our menu'></Cover>
-      <PopularMenu/>
+      {/* main cover */}
+     <SectionTitle subHeading="Don't Miss" heading="Today's offer"></SectionTitle>
+   {/* offered menu items */}
+   <MenuCategory items={offered}></MenuCategory>
+   {/* dessert items */}
+   <MenuCategory items={desserts} title="Dessert" coverImg={dessert}></MenuCategory>
+   <MenuCategory items={pizza} title="Pizza" coverImg={pizzas}></MenuCategory>
+   <MenuCategory items={salad} title="Salad" coverImg={salads}></MenuCategory>
+   <MenuCategory items={soup} title="Soup" coverImg={soups}></MenuCategory>
    
         </div>
     );
