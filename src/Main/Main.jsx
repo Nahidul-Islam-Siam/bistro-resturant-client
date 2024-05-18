@@ -5,7 +5,7 @@ import Navbar from "../Component/Navbar";
 
 const Main = () => {
     return (
-        <div >
+        <div className="overflow-hidden scroll-smooth">
             <Navbar/>
          <div>
          <Outlet/>
