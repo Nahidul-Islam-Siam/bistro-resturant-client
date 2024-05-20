@@ -1,5 +1,8 @@
-import { useEffect, useRef, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate, LoadCanvasTemplateNoReload, validateCaptcha } from 'react-simple-captcha';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { loadCaptchaEnginge, LoadCanvasTemplate,validateCaptcha } from 'react-simple-captcha';
+import { AuthContext } from '../AuthProvider/AuthProvider';
+import { Link } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 const Login = () => {
 
 const captchaRef = useRef(null)
@@ -20,7 +23,7 @@ else{
 }
 
 
-
+const {loginUser} = useContext(AuthContext)
 
 
     const handleLogin = (e)=>{
@@ -30,8 +33,16 @@ else{
         const password = form.email.value
         const z = {email, password}
         console.log(z);
+        loginUser(email,password)
+        .then(result=>{
+          console.log(result.user);
+        })
     }
     return (
+       <>
+        <Helmet>
+    <title>Bistro Boss | Login</title>
+   </Helmet>
         <div className="hero min-h-screen bg-base-200">
         <div className="hero-content flex-col md:flex-row-reverse">
           <div className="text-center lg:text-left md:w-1/2">
@@ -68,9 +79,10 @@ else{
               <input disabled={disabled} type="submit" className='btn btn-primary'/>
               </div>
             </form>
+          <p><small>New Here ?  <Link to='/signup'>Create an acoount</Link></small></p>
           </div>
         </div>
-      </div>
+      </div></>
     );
 };
 
