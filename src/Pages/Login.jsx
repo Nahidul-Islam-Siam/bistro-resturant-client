@@ -1,43 +1,58 @@
-import { useContext, useEffect, useRef, useState } from 'react';
-import { loadCaptchaEnginge, LoadCanvasTemplate,validateCaptcha } from 'react-simple-captcha';
+import { useContext } from 'react';
+// import { loadCaptchaEnginge, LoadCanvasTemplate,validateCaptcha } from 'react-simple-captcha';
 import { AuthContext } from '../AuthProvider/AuthProvider';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Helmet } from 'react-helmet-async';
 const Login = () => {
+  const {loginUser} = useContext(AuthContext)
+// const captchaRef = useRef(null)
+// const [disabled, setDisabled] = useState(true)
+// useEffect(()=>{
+//     loadCaptchaEnginge(6); 
+// },[])
 
-const captchaRef = useRef(null)
-const [disabled, setDisabled] = useState(true)
-useEffect(()=>{
-    loadCaptchaEnginge(6); 
-},[])
+
+// const handleValidateCaptcha = () =>{
+// const user_captcha_value = captchaRef.current.value
+// if(validateCaptcha(user_captcha_value)){
+// setDisabled(false)
+// }
+// else{
+//     setDisabled(true)
+// }
+// }
 
 
-const handleValidateCaptcha = () =>{
-const user_captcha_value = captchaRef.current.value
-if(validateCaptcha(user_captcha_value)){
-setDisabled(false)
+
+
+
+const navigate = useNavigate()
+const location = useLocation()
+const from = location?.state || '/'
+
+
+
+
+const handleLogin = e =>{
+  e.preventDefault()
+ 
+  const email = e.target.email.value
+  const password = e.target.password.value
+ 
+  console.log(email,password);
+  loginUser(email,password)
+  .then((result) => {
+   if(result.user){
+    navigate(from)
+    
+   }
+  })
+  .catch((error) => {
+    
+    const errorMessage = error.message;
+    console.log(errorMessage);
+  });
 }
-else{
-    setDisabled(true)
-}
-}
-
-
-const {loginUser} = useContext(AuthContext)
-
-
-    const handleLogin = (e)=>{
-        e.preventDefault()
-        const form = e.target
-        const email = form.email.value
-        const password = form.email.value
-        const z = {email, password}
-        console.log(z);
-        loginUser(email,password)
-        .then(result=>{
-          console.log(result.user);
-        })
-    }
     return (
        <>
         <Helmet>
@@ -66,17 +81,19 @@ const {loginUser} = useContext(AuthContext)
                   <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
                 </label>
               </div>
-               <div className="form-control">
+               {/* <div className="form-control">
                 <label className="label">
                 <LoadCanvasTemplate />
                 </label>
-                <input type="text"
+                {/* <input type="text"
                 ref={captchaRef} name="password" placeholder="type the capcha above" className="input input-bordered" required />
-                <button onClick={handleValidateCaptcha} className="btn btn-outline btn-primary btn-xs mt-2">Validate</button>
+                <button onClick={handleValidateCaptcha} className="btn btn-outline btn-primary btn-xs mt-2">Validate</button> */}
              
-              </div>
+              {/* </div> */}
               <div className="form-control mt-6">
-              <input disabled={disabled} type="submit" className='btn btn-primary'/>
+              <input
+              //  disabled={disabled}
+                type="submit" className='btn btn-primary'/>
               </div>
             </form>
           <p><small>New Here ?  <Link to='/signup'>Create an acoount</Link></small></p>

@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { Helmet } from "react-helmet-async";
 import { useForm } from "react-hook-form"
 import { AuthContext } from "../AuthProvider/AuthProvider";
+import { Link } from "react-router-dom";
 
 const SignUp = () => {
     const {
@@ -13,7 +14,10 @@ const SignUp = () => {
     const {createUser} = useContext(AuthContext)
       const onSubmit = (data) =>{
         console.log(data)
-
+        createUser(data.email,data.password)
+        .then(result=>{
+            console.log(result.user);
+        })
       } 
     
 
@@ -64,6 +68,7 @@ const SignUp = () => {
                 <input type="submit" value="Sign Up"
                 className="btn btn-primary"/>
               </div>
+            <a href="">Already user?  <Link to='/login'>login</Link></a>
             </form>
           </div>
         </div>

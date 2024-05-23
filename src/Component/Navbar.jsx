@@ -1,19 +1,31 @@
-import { NavLink } from "react-router-dom";
-
+import { useContext } from "react";
+import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../AuthProvider/AuthProvider";
+import { CiShoppingCart } from "react-icons/ci";
 
 const Navbar = () => {
+  const {user, logout} = useContext(AuthContext)
+  const handleLogout = ()=>{
+    logout()
+  }
     const links = <>
-     <li><NavLink to='/'>HOME</NavLink></li>
-    <li><NavLink to='/menu'>OUR MENU</NavLink></li>
-    <li><NavLink to='/login'>LOGIN</NavLink></li>
-  
-    <li><NavLink to='/order/salad'>ORDER FOOD</NavLink></li>
+     <li><Link to='/'>HOME</Link></li>
+    <li><Link  to='/menu'>OUR MENU</Link></li>
+    <li><Link  to='/order/salad'>ORDER FOOD</Link></li>
+    <li><Link  to='/secret'>SECREAT</Link></li>
+ <button className="btn btn-outline">
+ <CiShoppingCart className="mr-2"/>
+  <div className="badge badge-secondary">+0</div>
+</button>
+  { user ?
+   <li onClick={handleLogout}><Link >LOG OUT</Link></li>:<li><Link  to='/login'>LOGIN</Link></li>}
+   
     
      
     </>
     return (
         
-<div className="fixed z-10 left-0 right-0 max-w-screen-xl mx-auto">
+<div className="fixed z-10 left-0 right-0 max-w-screen-xl mx-auto items-center justify-center">
 <div className="navbar bg-black bg-opacity-30 text-white ">
   <div className="navbar-start">
     <div className="dropdown ">
