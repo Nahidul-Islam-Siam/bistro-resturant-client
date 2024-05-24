@@ -12,7 +12,6 @@ const Dashboard = () => {
 <ul className="menu p-4">
 
 
-
 <li><NavLink to='/dashboard/userHome'><FaHome />User Home</NavLink></li>
 
 <li><NavLink to='/dashboard/reservation'><FaCalendar />Reservation</NavLink></li>
@@ -26,6 +25,7 @@ const Dashboard = () => {
 </div>
 <li><NavLink to='/'><FaHome />Home</NavLink></li>
 <li><NavLink to='/order/salad'><FaSearch />Menu</NavLink></li>
+<li><NavLink to='/dashboard/bookings'><FaList /> My Bookings</NavLink></li>
 </ul>
             </div>
 
