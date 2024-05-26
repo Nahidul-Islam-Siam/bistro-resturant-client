@@ -13,7 +13,7 @@ const PrivateRoutes = ({children}) => {
 
 
 if(loading){
-return <h1>Loading.....</h1>
+return <progress className="progress w-56"></progress>
 }
 
 
