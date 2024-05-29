@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 const ManageItems = () => {
   const axiosSecure = useAxiosSecure()
-  const [menu,loading,refetch] = useMenu();
+  const [menu,refetch] = useMenu();
   const handleDeleteUser = (item) => {
     Swal.fire({
         title: "Are you sure?",
@@ -42,8 +42,7 @@ const ManageItems = () => {
       });
   };
 
-  // update
-  const handleMakeAdmin = (item) => {};
+
  
   return (
     <div>
@@ -84,17 +83,12 @@ const ManageItems = () => {
                   <td>{item.name}</td>
                   <td className="text-right">{item.price}</td>
                   <th>
-                    <Link to={`dashboard/updateItems/${item._id}`} className="btn btn-ghost btn-xs">
+                    <Link to={`/dashboard/updateItem/${item._id}`} className="btn btn-ghost btn-xs">
                       
-                      <button
-                        onClick={() => handleMakeAdmin(item)}
-                        className="btn btn- bg-orange-500"
-                      >
-                        <FaEdit
-                          className="text-white 
-                                        text-xl"
-                        ></FaEdit>
-                      </button>
+                    
+                    <button className="btn btn-ghost btn- bg-orange-500">
+                      <FaEdit className="text-white"/>
+                    </button>
                     </Link>
                   </th>
                   <th>

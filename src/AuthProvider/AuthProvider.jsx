@@ -35,11 +35,11 @@ const googleLogin  =()=>{
  return  signInWithPopup(auth,  googleProvider)
 }
 
-// github login
-const githubLogin = () =>{
-    setLoading(true)
-return signInWithPopup(auth,  githubProvider)
-}
+// // github login
+// const githubLogin = () =>{
+//     setLoading(true)
+// return signInWithPopup(auth,  githubProvider)
+// }
 
 // update profile
 const updateUserProfile = (name, photo) => {
@@ -86,7 +86,7 @@ const logout = () =>{
         createUser,
         loginUser,
         googleLogin,
-        githubLogin,
+        // githubLogin,
         logout,
         user,
         loading,
