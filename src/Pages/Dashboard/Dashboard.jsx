@@ -33,11 +33,11 @@ const Dashboard = () => {
     
 <li><NavLink to='/dashboard/userHome'><FaHome />User Home</NavLink></li>
 
-<li><NavLink to='/dashboard/reservation'><FaCalendar />Reservation</NavLink></li>
+<li><NavLink to='/dashboard/history'><FaCalendar /> No History</NavLink></li>
 
 <li><NavLink to='/dashboard/cart'><FaShoppingCart /> My Cart  ({cart.length})</NavLink></li>
 <li><NavLink to='/dashboard/review'><FaAd /> Add Review</NavLink></li>
-<li><NavLink to='/dashboard/bookings'><FaList /> My Bookings</NavLink></li>
+<li><NavLink to='/dashboard/paymentHistory'><FaList />Real Payment  History</NavLink></li>
     </>
 }
 
